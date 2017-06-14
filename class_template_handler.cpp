@@ -2,6 +2,7 @@
 
 using clang::ast_matchers::MatchFinder;
 using clang::ClassTemplateDecl;
+using clang::NonTypeTemplateParmDecl;
 
 void ClassTemplateHandler::run(const MatchFinder::MatchResult &result) {
     auto nodes = result.Nodes;
@@ -20,6 +21,18 @@ void ClassTemplateHandler::run(const MatchFinder::MatchResult &result) {
             llvm::outs() << "end - "
                 << loc_end.getSpellingLineNumber() << ":"
                 << loc_end.getSpellingColumnNumber() << "\n";
+        }
+        auto params = class_templ_decl->getTemplateParameters();
+        if(params) {
+            for(auto it = params->begin(); it != params->end(); ++it) {
+                if(llvm::isa<NonTypeTemplateParmDecl>(*it)) {
+                    auto non_type_p = llvm::cast<NonTypeTemplateParmDecl>(*it);
+                    llvm::outs() << non_type_p->getType().getAsString();
+                } else {
+                    llvm::outs() << "typename";
+                }
+                llvm::outs() << " " << (*it)->getName() << "\n";
+            }
         }
     }
 }
