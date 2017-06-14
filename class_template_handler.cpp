@@ -1,16 +1,15 @@
 #include "class_template_handler.h"
 
 using clang::ast_matchers::MatchFinder;
-using clang::FullSourceLoc;
+using clang::ClassTemplateDecl;
 
 void ClassTemplateHandler::run(const MatchFinder::MatchResult &result) {
-    auto classTemplDecl =
-        result.Nodes.getNodeAs<clang::ClassTemplateDecl>("class-template");
-    if(classTemplDecl) {
-        FullSourceLoc loc_start =
-            result.Context->getFullLoc(classTemplDecl->getLocStart());
-        FullSourceLoc loc_end =
-            result.Context->getFullLoc(classTemplDecl->getTemplatedDecl()->getLocStart());
+    auto nodes = result.Nodes;
+    auto class_templ_decl = nodes.getNodeAs<ClassTemplateDecl>("class-template");
+    if(class_templ_decl) {
+        auto ctx = result.Context;
+        auto loc_start = ctx->getFullLoc(class_templ_decl->getLocStart());
+        auto loc_end = ctx->getFullLoc(class_templ_decl->getTemplatedDecl()->getLocStart());
         llvm::outs() << "Found class template\n";
         if (loc_start.isValid()) {
             llvm::outs() << "start - "

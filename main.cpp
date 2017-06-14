@@ -1,7 +1,3 @@
-#include <iostream>
-
-// // Declares clang::SyntaxOnlyAction.
-// #include "clang/Frontend/FrontendActions.h"
 #include "clang/Tooling/CommonOptionsParser.h"
 #include "clang/Tooling/Tooling.h"
 // Declares llvm::cl::extrahelp.
