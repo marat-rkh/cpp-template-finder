@@ -38,6 +38,5 @@ int main(int argc, const char **argv) {
         return res;
     }
     llvm::outs() << "found class templates: "
-        << class_template_callback.CollectedData().size()
-        << "\n";
+        << class_template_callback.CollectedData().size() << "\n";
 }
