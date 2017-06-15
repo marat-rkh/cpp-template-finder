@@ -4,6 +4,7 @@ template<
     typename A,
     class B,
     int N,
+    template<class> class TT,
     typename C = Some,
     typename = double
 >
@@ -12,7 +13,7 @@ class Either
     int i;
 };
 
-// template<A, B, int N, C = Some, _ = double>
+// template<A, B, int N, template<_> class TT, C = Some, _ = double>
 // class Either
 //     : public Some {
 //     int i;

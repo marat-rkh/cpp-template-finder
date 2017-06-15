@@ -34,5 +34,9 @@ int main(int argc, const char **argv) {
     MatchFinder finder;
     finder.addMatcher(class_template_matcher, &handler);
 
-    return tool.run(newFrontendActionFactory(&finder).get());
+    int res = tool.run(newFrontendActionFactory(&finder).get());
+    if(res) {
+        return res;
+    }
+    llvm::outs() << "found class templates: " << handler.CollectedData().size() << "\n";
 }
