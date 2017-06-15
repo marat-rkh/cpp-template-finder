@@ -4,7 +4,7 @@
 #include "llvm/Support/CommandLine.h"
 
 #include "clang/ASTMatchers/ASTMatchFinder.h"
-#include "clang/ASTMatchers/ASTMatchers.h"
+// #include "clang/ASTMatchers/ASTMatchers.h"
 
 #include "class_template_handler.h"
 
@@ -29,14 +29,15 @@ int main(int argc, const char **argv) {
         options_parser.getSourcePathList()
     );
 
-    auto class_template_matcher = classTemplateDecl().bind("class-template");
-    ClassTemplateHandler handler;
     MatchFinder finder;
-    finder.addMatcher(class_template_matcher, &handler);
+    auto class_template_callback = ClassTemplateHandler::CreateCallback();
+    finder.addMatcher(ClassTemplateHandler::Matcher, &class_template_callback);
 
     int res = tool.run(newFrontendActionFactory(&finder).get());
     if(res) {
         return res;
     }
-    llvm::outs() << "found class templates: " << handler.CollectedData().size() << "\n";
+    llvm::outs() << "found class templates: "
+        << class_template_callback.CollectedData().size()
+        << "\n";
 }

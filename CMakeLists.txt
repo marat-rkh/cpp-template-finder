@@ -2,6 +2,7 @@ set(LLVM_LINK_COMPONENTS support)
 
 add_clang_executable(cpp-template-finder
   main.cpp
+  class_template_callback.cpp
   class_template_handler.cpp
 )
 
