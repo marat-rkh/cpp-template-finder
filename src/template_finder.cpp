@@ -15,7 +15,7 @@ using clang::tooling::ClangTool;
 using clang::tooling::newFrontendActionFactory;
 using clang::ast_matchers::MatchFinder;
 
-vector<ClassTemplateData> FindTemplates(
+CollectedData FindTemplates(
     const vector<string> &srcPathList,
     const CompilationDatabase &compilations
 ) {
@@ -28,5 +28,5 @@ vector<ClassTemplateData> FindTemplates(
     if(res) {
         throw runtime_error("failed to find templates");
     }
-    return class_template_callback.CollectedData();
+    return CollectedData(class_template_callback.CollectedData());
 }

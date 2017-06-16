@@ -1,10 +1,12 @@
 set(LIB_SRC
+    collected_data.cpp
     class_template_callback.cpp
     class_template_handler.cpp
     template_finder.cpp
 )
 add_library(cpp-template-finder-lib ${LIB_SRC})
 target_include_directories(cpp-template-finder-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(cpp-template-finder-lib PUBLIC ${CMAKE_SOURCE_DIR}/libs)
 
 target_link_libraries(cpp-template-finder-lib
     clangFrontend

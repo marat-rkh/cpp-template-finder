@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "clang/Tooling/CommonOptionsParser.h"
 #include "clang/Tooling/Tooling.h"
 // Declares llvm::cl::extrahelp.
@@ -5,6 +7,9 @@
 
 #include "template_finder.h"
 
+using std::cout;
+using std::cerr;
+using std::endl;
 using namespace llvm;
 using llvm::cl::OptionCategory;
 using clang::tooling::CommonOptionsParser;
@@ -22,12 +27,14 @@ static cl::extrahelp more_help("\nMore help text...");
 int main(int argc, const char **argv) {
     try {
         CommonOptionsParser options_parser(argc, argv, tool_category);
-        auto templates = FindTemplates(
+        auto data = FindTemplates(
                 options_parser.getSourcePathList(),
                 options_parser.getCompilations()
         );
-        llvm::outs() << "found class templates: " << templates.size() << "\n";
+        cout << data.ToCompactJson() << endl;
+        return 0;
     } catch(std::exception const &e) {
-        llvm::outs() << e.what() << "\n";
+        cerr << e.what() << endl;
+        return 1;
     }
 }

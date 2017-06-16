@@ -6,7 +6,7 @@
 
 #include "clang/ASTMatchers/ASTMatchFinder.h"
 
-#include "class_template_data.h"
+#include "collected_data.h"
 
 class ClassTemplateCallback: public clang::ast_matchers::MatchFinder::MatchCallback {
 public:

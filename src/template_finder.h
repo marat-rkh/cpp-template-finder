@@ -6,9 +6,9 @@
 
 #include "clang/Tooling/Tooling.h"
 
-#include "class_template_data.h"
+#include "collected_data.h"
 
-std::vector<ClassTemplateData> FindTemplates(
+CollectedData FindTemplates(
     const std::vector<std::string> &srcPathList,
     const clang::tooling::CompilationDatabase &compilations
 );
