@@ -39,7 +39,6 @@ vector<ClassTemplateData> FindTemplates(int argc, const char *argv[]) {
     return class_template_callback.CollectedData();
 }
 
-
 vector<ClassTemplateData> FindTemplates(string const &file_path) {
     const int argc = 5;
     const char *argv[] = {"", file_path.c_str(), "--", "-xc++", "-std=c++11"};

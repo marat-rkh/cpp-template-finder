@@ -1,6 +1,9 @@
-# expected variables
+# One of the following set of variables is expected
+# 1) To build using llvm built from sources (and not installed)
 # LLVM_SRC_PATH -- path to llvm+clang source files directory
 # LLVM_BUILD_PATH -- path to llvm+clang build directory
+# 2) To build using pre-built binaries
+# LLVM_PATH -- path to folder with pre-built llvm+clang files
 
 cmake_minimum_required(VERSION 2.8.2)
 
@@ -41,11 +44,16 @@ endif()
 
 # ===================
 
-link_directories(${LLVM_BUILD_PATH}/lib)
-include_directories(${LLVM_SRC_PATH}/include)
-include_directories(${LLVM_BUILD_PATH}/include)
-include_directories(${LLVM_SRC_PATH}/tools/clang/include)
-include_directories(${LLVM_BUILD_PATH}/tools/clang/include)
+if(LLVM_PATH)
+    link_directories(${LLVM_PATH}/lib)
+    include_directories(${LLVM_PATH}/include)
+elseif(LLVM_BUILD_PATH AND LLVM_SRC_PATH)
+    link_directories(${LLVM_BUILD_PATH}/lib)
+    include_directories(${LLVM_SRC_PATH}/include)
+    include_directories(${LLVM_BUILD_PATH}/include)
+    include_directories(${LLVM_SRC_PATH}/tools/clang/include)
+    include_directories(${LLVM_BUILD_PATH}/tools/clang/include)
+endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -fno-rtti")
 

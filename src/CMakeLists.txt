@@ -93,7 +93,6 @@ target_link_libraries(cpp-template-finder-lib
     LLVMLanaiCodeGen
     LLVMLanaiAsmParser
     LLVMLanaiDesc
-    LLVMLanaiAsmPrinter
     LLVMLanaiInfo
     LLVMHexagonDisassembler
     LLVMHexagonCodeGen
@@ -168,7 +167,6 @@ target_link_libraries(cpp-template-finder-lib
     LLVMMC
     LLVMBitReader
     LLVMCore
-    LLVMBinaryFormat
     LLVMSupport
     LLVMDemangle
     rt
@@ -179,5 +177,5 @@ target_link_libraries(cpp-template-finder-lib
     m
 )
 
-# add_executable(cpp-template-finder main.cpp)
-# target_link_libraries (cpp-template-finder LINK_PUBLIC cpp-template-finder-lib)
+add_executable(cpp-template-finder main.cpp)
+target_link_libraries (cpp-template-finder LINK_PUBLIC cpp-template-finder-lib)
