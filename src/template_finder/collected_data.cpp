@@ -6,6 +6,8 @@ using std::string;
 
 using json = nlohmann::json;
 
+namespace template_finder {
+
 string CollectedData::ToCompactJson() const {
     json j;
     for(auto &ct: class_templates) {
@@ -22,4 +24,6 @@ string CollectedData::ToCompactJson() const {
         });
     }
     return j.dump();
+}
+
 }

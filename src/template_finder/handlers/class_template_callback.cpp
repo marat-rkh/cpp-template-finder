@@ -6,6 +6,8 @@ using clang::NonTypeTemplateParmDecl;
 using clang::TemplateTypeParmDecl;
 using clang::TemplateTemplateParmDecl;
 
+namespace template_finder { namespace handlers {
+
 void ClassTemplateCallback::run(const MatchFinder::MatchResult &result) {
     auto nodes = result.Nodes;
     auto full_decl = nodes.getNodeAs<ClassTemplateDecl>(bound_name_);
@@ -50,3 +52,5 @@ void ClassTemplateCallback::run(const MatchFinder::MatchResult &result) {
         { loc_end.getSpellingLineNumber(), loc_end.getSpellingColumnNumber() }
     });
 }
+
+}}

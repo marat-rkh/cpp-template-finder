@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+namespace template_finder {
+
 struct ClassTemplateData {
     std::pair<int, int> template_start;
     std::pair<int, int> param_list_end;
@@ -24,5 +26,7 @@ private:
         // to be continued
     };
 };
+
+}
 
 #endif

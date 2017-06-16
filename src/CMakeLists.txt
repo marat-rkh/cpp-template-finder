@@ -1,11 +1,13 @@
 set(LIB_SRC
-    collected_data.cpp
-    class_template_callback.cpp
-    class_template_handler.cpp
-    template_finder.cpp
+    template_finder/handlers/class_template_callback.cpp
+    template_finder/handlers/class_template_handler.cpp
+    template_finder/collected_data.cpp
+    template_finder/template_finder.cpp
 )
 add_library(cpp-template-finder-lib ${LIB_SRC})
-target_include_directories(cpp-template-finder-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(cpp-template-finder-lib
+    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/template_finder
+)
 target_include_directories(cpp-template-finder-lib PUBLIC ${CMAKE_SOURCE_DIR}/libs)
 
 target_link_libraries(cpp-template-finder-lib
@@ -179,5 +181,5 @@ target_link_libraries(cpp-template-finder-lib
     m
 )
 
-add_executable(cpp-template-finder main.cpp)
+add_executable(cpp-template-finder template_finder/main.cpp)
 target_link_libraries (cpp-template-finder LINK_PUBLIC cpp-template-finder-lib)

@@ -8,9 +8,13 @@
 
 #include "collected_data.h"
 
+namespace template_finder {
+
 CollectedData FindTemplates(
     const std::vector<std::string> &srcPathList,
     const clang::tooling::CompilationDatabase &compilations
 );
+
+}
 
 #endif

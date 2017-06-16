@@ -7,10 +7,14 @@
 
 #include "class_template_callback.h"
 
+namespace template_finder { namespace handlers {
+
 class ClassTemplateHandler {
 public:
     static const clang::ast_matchers::DeclarationMatcher Matcher;
     static ClassTemplateCallback CreateCallback();
 };
+
+}}
 
 #endif

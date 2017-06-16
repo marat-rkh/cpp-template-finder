@@ -8,6 +8,7 @@
 
 using std::vector;
 using std::make_pair;
+using template_finder::FindTemplates;
 
 TEST(find_class_template, should_handle_simple_template) {
     auto data = FindTemplates({"data/simple_class_template.h"}, TestCommon::TestCompilations);

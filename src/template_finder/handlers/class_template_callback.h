@@ -8,6 +8,8 @@
 
 #include "collected_data.h"
 
+namespace template_finder { namespace handlers {
+
 class ClassTemplateCallback: public clang::ast_matchers::MatchFinder::MatchCallback {
 public:
     explicit ClassTemplateCallback(const std::string &bound_name)
@@ -20,5 +22,7 @@ private:
     const std::string bound_name_;
     std::vector<ClassTemplateData> data_;
 };
+
+}}
 
 #endif

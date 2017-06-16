@@ -27,7 +27,7 @@ static cl::extrahelp more_help("\nMore help text...");
 int main(int argc, const char **argv) {
     try {
         CommonOptionsParser options_parser(argc, argv, tool_category);
-        auto data = FindTemplates(
+        auto data = template_finder::FindTemplates(
                 options_parser.getSourcePathList(),
                 options_parser.getCompilations()
         );
