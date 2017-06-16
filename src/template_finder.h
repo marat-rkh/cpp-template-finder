@@ -4,9 +4,13 @@
 #include <vector>
 #include <string>
 
+#include "clang/Tooling/Tooling.h"
+
 #include "class_template_data.h"
 
-std::vector<ClassTemplateData> FindTemplates(int argc, const char *argv[]);
-std::vector<ClassTemplateData> FindTemplates(std::string const &file_path);
+std::vector<ClassTemplateData> FindTemplates(
+    const std::vector<std::string> &srcPathList,
+    const clang::tooling::CompilationDatabase &compilations
+);
 
 #endif
