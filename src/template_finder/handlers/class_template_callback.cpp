@@ -49,7 +49,7 @@ void ClassTemplateCallback::run(const MatchFinder::MatchResult &result) {
     // }
     data_.push_back({
         { loc_start.getSpellingLineNumber(), loc_start.getSpellingColumnNumber() },
-        { loc_end.getSpellingLineNumber(), loc_end.getSpellingColumnNumber() }
+        { loc_end.getSpellingLineNumber(), loc_end.getSpellingColumnNumber() + 1 }
     });
 }
 
