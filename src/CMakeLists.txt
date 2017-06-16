@@ -1,12 +1,12 @@
-set(SRC
-    main.cpp
+set(LIB_SRC
     class_template_callback.cpp
     class_template_handler.cpp
+    template_finder.cpp
 )
+add_library(cpp-template-finder-lib ${LIB_SRC})
+target_include_directories(cpp-template-finder-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(cpp-template-finder ${SRC})
-
-target_link_libraries(cpp-template-finder
+target_link_libraries(cpp-template-finder-lib
     clangFrontend
     clangDriver
     clangTooling
@@ -39,7 +39,7 @@ target_link_libraries(cpp-template-finder
     clangBasic
 )
 
-target_link_libraries(cpp-template-finder
+target_link_libraries(cpp-template-finder-lib
     LLVMPasses
     LLVMObjCARCOpts
     LLVMMIRParser
@@ -178,3 +178,6 @@ target_link_libraries(cpp-template-finder
     z
     m
 )
+
+# add_executable(cpp-template-finder main.cpp)
+# target_link_libraries (cpp-template-finder LINK_PUBLIC cpp-template-finder-lib)

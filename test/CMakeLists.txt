@@ -1,3 +1,3 @@
-# set(TEST_SRC my_cpp_json/json_tests.cpp)
-# add_executable(json.test ${TEST_SRC})
-# target_link_libraries(json.test gtest_main my-cpp-json)
+set(TEST_SRC find_class_template_tests.cpp)
+add_executable(find-class-template.test ${TEST_SRC})
+target_link_libraries(find-class-template.test gtest_main cpp-template-finder-lib)

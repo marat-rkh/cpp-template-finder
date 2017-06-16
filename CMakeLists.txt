@@ -51,7 +51,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -fno-rtti")
 
 add_subdirectory(src bin/src)
 
-# enable_testing()
-# add_subdirectory(test bin/test)
-#
-# file(COPY ${CMAKE_SOURCE_DIR}/test/data DESTINATION ${CMAKE_BINARY_DIR}/bin/test/)
+enable_testing()
+add_subdirectory(test bin/test)
+
+file(COPY ${CMAKE_SOURCE_DIR}/test/data DESTINATION ${CMAKE_BINARY_DIR}/bin/test/)

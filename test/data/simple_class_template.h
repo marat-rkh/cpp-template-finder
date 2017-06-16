@@ -1,25 +1,20 @@
-class Some {};
+class One {};
 
 template<
     typename A,
     class B,
     int N,
     template<class> class TT,
-    typename C = Some,
+    typename C = One,
     typename = double
 >
-class Either
-    : public Some {
+class Two
+    : public One {
     int i;
 };
 
 // template<A, B, int N, template<_> class TT, C = Some, _ = double>
-// class Either
+// class Two
 //     : public Some {
 //     int i;
 // };
-
-int main(void) {
-    int result = -1, val = 4;
-    return result;
-}
