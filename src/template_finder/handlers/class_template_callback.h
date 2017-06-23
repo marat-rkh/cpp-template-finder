@@ -4,9 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "clang/ASTMatchers/ASTMatchFinder.h"
+#include "3rd_party/json.hpp"
 
-#include "collected_data.h"
+#include "clang/ASTMatchers/ASTMatchFinder.h"
 
 namespace template_finder { namespace handlers {
 
@@ -17,10 +17,12 @@ public:
     {}
 
     void run(const clang::ast_matchers::MatchFinder::MatchResult &result) override;
-    const std::vector<ClassTemplateData> &CollectedData() const { return data_; }
+    const std::vector<nlohmann::json> &CollectedData() const { return data_; }
 private:
+    nlohmann::json HandleParams(clang::TemplateParameterList *params);
+
     const std::string bound_name_;
-    std::vector<ClassTemplateData> data_;
+    std::vector<nlohmann::json> data_;
 };
 
 }}

@@ -5,26 +5,21 @@
 #include <vector>
 #include <string>
 
-namespace template_finder {
+#include "3rd_party/json.hpp"
 
-struct ClassTemplateData {
-    std::pair<int, int> template_start;
-    std::pair<int, int> param_list_end;
-};
+namespace template_finder {
 
 class CollectedData {
 public:
-    explicit CollectedData(const std::vector<ClassTemplateData> &ts):
+    explicit CollectedData(const std::vector<nlohmann::json> &ts):
         class_templates(ts)
     {}
-    std::string ToCompactJson() const;
+    std::string ToCompactJson() const { return ToJson(-1); }
+    std::string ToPrettyJson() const { return ToJson(4); }
 
-    const std::vector<ClassTemplateData> class_templates;
+    const std::vector<nlohmann::json> class_templates;
 private:
-    enum JsonEntryTypes {
-        CLASS_TEMPLATE
-        // to be continued
-    };
+    std::string ToJson(int indent) const;
 };
 
 }
