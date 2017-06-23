@@ -11,7 +11,7 @@
 namespace template_finder {
 
 CollectedData FindTemplates(
-    const std::vector<std::string> &srcPathList,
+    const std::vector<std::string> &src_paths,
     const clang::tooling::CompilationDatabase &compilations
 );
 

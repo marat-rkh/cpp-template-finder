@@ -10,19 +10,23 @@ using clang::TemplateTemplateParmDecl;
 using clang::TemplateParameterList;
 using clang::LangOptions;
 using clang::PrintingPolicy;
+using clang::ASTContext;
 
 namespace template_finder { namespace handlers {
 
 void ClassTemplateCallback::run(const MatchFinder::MatchResult &result) {
-    auto nodes = result.Nodes;
+    auto &nodes = result.Nodes;
     auto full_decl = nodes.getNodeAs<ClassTemplateDecl>(bound_name_);
     if(!full_decl) {
         // TODO this should not be here
         llvm::outs() << "warning: encountered class template with no declaration\n";
         return;
     }
-    const auto &decl_name = full_decl->getNameAsString();
     auto ctx = result.Context;
+    if(!IsAmongTargetFiles(ctx, full_decl)) {
+        return;
+    }
+    const auto &decl_name = full_decl->getNameAsString();
     auto loc_start = ctx->getFullLoc(full_decl->getLocStart());
     if(!loc_start.isValid()) {
         llvm::outs() << "warning: failed to get start location for class template "
@@ -53,6 +57,14 @@ void ClassTemplateCallback::run(const MatchFinder::MatchResult &result) {
         }},
         {"params", j_params}
     });
+}
+
+bool ClassTemplateCallback::IsAmongTargetFiles(
+    ASTContext *const ctx,
+    const ClassTemplateDecl *decl
+) const {
+    auto file_path = ctx->getSourceManager().getFilename(decl->getLocStart()).str();
+    return target_files_.find(file_path) != target_files_.end();
 }
 
 json ClassTemplateCallback::HandleParams(TemplateParameterList *params) {
